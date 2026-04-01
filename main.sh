@@ -1,10 +1,21 @@
-register_user(){ 
-read -p "Enter Username:" username
+authenticate(){
+read -p "Enter UserName:" username
 if cut -f1 users.tsv | grep -qw "$username" ;then
- echo "User Name already exists! Try Again"
- register_user
+check_password "$username"
+else
+ read -p "Username not found.Do you want to register? (y/n):" choice 
+  if [ "$choice" = "y" ] || [ "$choice" = "Y" ];then 
+      register_user
+  elif [ "$choice" = "n" ] || [ "$choice" = "N" ];then
+      authenticate
+  else
+       :
+  fi
 fi
-read -sp "Enter Password:" password
-hashed=$(echo -n "$password" | sha256sum | awk "$1")
-echo "$username\t$hashed" >> users.tsv
+echo "$username"
 }
+echo "Player 1 Login"
+player1=$(authenticate)
+
+echo "Player 2 Login"
+player2=$(authenticate)
