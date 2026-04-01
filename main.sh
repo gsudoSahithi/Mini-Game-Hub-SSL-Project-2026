@@ -1,3 +1,4 @@
+#this handles login logic and register processes 
 authenticate(){
 read -p "Enter UserName:" username
 if cut -f1 users.tsv | grep -qw "$username" ;then
@@ -14,6 +15,7 @@ else
 fi
 echo "$username"
 }
+#player 1 & 2 logins
 echo "Player 1 Login"
 player1=$(authenticate)
 
