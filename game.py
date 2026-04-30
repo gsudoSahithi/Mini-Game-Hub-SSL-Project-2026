@@ -1,5 +1,4 @@
 import sys
-import numpy as np
 import pygame
 import numpy as np
 from games import tictactoe
@@ -84,19 +83,19 @@ while(running):
         if event.type == pygame.MOUSEBUTTONDOWN:
             mouse_pos = pygame.mouse.get_pos()
             if tictactoe_rect.collidepoint(mouse_pos):
-                game = tictactoe.TicTacToe("Player 1", "Player 2")
+                game = tictactoe.TicTacToe(sys.argv[1],sys.argv[2])
                 game.run()
                 if not post_game_screen(screen):
                     running = False
 
             if othello_rect.collidepoint(mouse_pos):
-                game = othello.Othello("Player 1", "Player 2")
+                game = othello.Othello(sys.argv[1], sys.argv[2])
                 game.run()
                 if not post_game_screen(screen):
                     running = False
                     
             if connect4_rect.collidepoint(mouse_pos):
-                game = connect4.Connect4("Player 1", "Player 2")
+                game = connect4.Connect4(sys.argv[1],sys.argv[2])
                 game.run()
                 if not post_game_screen(screen):
                     running = False
